@@ -18,7 +18,7 @@
   "scripts": {
     "start": "microbundle --watch --no-sourcemap --compress false",
     "build": "microbundle --no-sourcemap --compress false",
-    "test": "NODE_PATH=./src jest --config=jest.config.js --coverage --coverageReporters=text-lcov | coveralls",
+    "test": "NODE_PATH=./src jest --config=jest.config.js",
     "report-coverage": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
