@@ -13,13 +13,15 @@
     "babel-jest": "^24.7.1",
     "coveralls": "^3.0.3",
     "jest": "^24.7.1",
+    "jsdoc": "^3.5.5",
     "microbundle": "^0.11.0"
   },
   "scripts": {
     "start": "microbundle --watch --no-sourcemap --compress false",
     "build": "microbundle --no-sourcemap --compress false",
     "test": "NODE_PATH=./src jest --config=jest.config.js --coverage",
-    "report-coverage": "cat ./coverage/lcov.info | coveralls"
+    "report-coverage": "cat ./coverage/lcov.info | coveralls",
+    "build:docs": "jsdoc -c jsdoc.json"
   },
   "repository": {
     "type": "git",

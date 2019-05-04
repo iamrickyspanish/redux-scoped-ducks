@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Global</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Global</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2></h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="createScopedDuckFactory"><span class="type-signature"></span>createScopedDuckFactory<span class="signature">(duck)</span><span class="type-signature"> &rarr; {function}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Creates a function thas can scope a given duck.</p>
+<p>
+ Takes a duck and returns a function that is able to create scoped versions of the given duck.
+</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>duck</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="createScopedDuckFactory.js.html">createScopedDuckFactory.js</a>, <a href="createScopedDuckFactory.js.html#line26">line 26</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>duck factory - a function that takes a scope and returns a scoped version of the given duck</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">function</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>import * as counterDuck from "src/counter/duck"
+import { createScopedDuckFactory } from "redux-scoped-ducks"
+
+// create a factory for counter duck
+export const counterDuckFactory = createScopedDuckFactory(counterDuck)
+ 
+// now you can use the factory to create multiple versions of the counter duck, and therfore its whole redux logic, that are scoped and do not interfere with each other 
+const counterADuck = counterDuckFactory("counterA")
+const counterBDuck = counterDuckFactory("counterB")</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="scopeAction"><span class="type-signature"></span>scopeAction<span class="signature">(scope, action)</span><span class="type-signature"> &rarr; {object|function}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Scopes an action creator/object/type.</p>
+<p>the given action can be an action creator/object/type.</p>
+<p>
+ The given action is a string: will be treated as action type.
+ <code>scopeAction</code> will return an action object wich will contain the scoped action type aswell as some meta data.
+ If not duck complient, the action type of the returned action object will remain unscoped and no meta data will be added
+</p>
+<p>
+ The given action is an object: will be treated as action object.
+ <code>scopeAction</code> will modify the object by scoping its action type aswell as adding some meta data.
+  If not duck complient, the action object will be returned as it is.
+</p>
+<p>
+ The given action is a function: will be treated as action creator.
+<code>scopeAction</code> will return an action creator that will return the output of the given action creator but scopes the action type aswell as adding some meta data.
+ If not duck complient, the given action creator will be returned as it is.
+</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the scope: will replace the reducer part of the actions action type</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>action</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">object</span>
+|
+
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the action (type/object/creator) that will be scoped</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scopeAction.js.html">scopeAction.js</a>, <a href="scopeAction.js.html#line76">line 76</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>scoped action object or action creator</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+|
+
+<span class="param-type">function</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>// basic usage
+...
+const scopedAction = scopeAction("reducerB", action)
+
+// given action is an action type
+const action = "app/reducerA/DO_STUFF";
+
+console.log(scopeAction("reducerB", action));
+// { 
+//   type: "app/reducerB/DO_STUFF",
+//   meta: { 
+//     unscopedActionType: "app/reducerA/DO_STUFF" 
+//   }
+// }
+
+// given action is an action object
+const action = { 
+ type: "app/reducerA/DO_STUFF",
+ payload: 42
+};
+
+console.log(scopeAction("reducerB", action));
+// { 
+//   type: "app/reducerB/DO_STUFF",
+//   payload: 42,
+//   meta: {
+//     unscopedActionType: "app/reducerA/DO_STUFF"
+//   }
+// }
+
+// given action is an action creator
+const action = payload => ({ type: "app/reducerA/DO_STUFF", payload })
+console.log(action(42))
+// {
+//   type: "app/reducerA/DO_STUFF",
+//   payload: 42
+// }
+const scopedAction = scopeAction("reducerB", action)
+console.log(scopedAction(42));
+// {
+//   type: "app/reducerB/DO_STUFF",
+//   payload: 42,
+//   meta: {
+//     unscopedActionType: "app/reducerA/DO_STUFF"
+//   }
+// }</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="scopeActionType"><span class="type-signature"></span>scopeActionType<span class="signature">(scope, actionType)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Scope an action type.</p>
+<p>
+ Replaces reducer in a duck complient action type with param scope&quot;.
+ If not duck complient, the  given action type is returned unproccessed.
+</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the string that will replace the reducer part of the action type</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>actionType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the action type that will be scoped</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scopeActionType.js.html">scopeActionType.js</a>, <a href="scopeActionType.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>scoped action type</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const actionType = "app/reducerA/DO_STUFF";
+console.log(scopeActionType("reducerB", actionType)); // app/reducerB/DO_STUFF</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="scopeDuck"><span class="type-signature"></span>scopeDuck<span class="signature">(scope, duck)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Scopes a whole duck.</p>
+<p>Takes a duck and returns a scoped version. All scrion types, action creators and the reducer are scoped.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>duck</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scopeDuck.js.html">scopeDuck.js</a>, <a href="scopeDuck.js.html#line35">line 35</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>scoped duck - all action types/creators and the reducer are scoped</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>// src/valueDuck.js
+export const SET_VALUE = "app/reducerA/SET_VALUE"
+export const setValue = payload => ({
+ type: SET_VALUE,
+ payload
+})
+export default (state = 0, action) => action.type === SET_VALUE
+ ? action.payload
+ : state
+
+// src/valueADuck.js
+import * as valueDuck from "./valueDuck"
+export const duck = scopeDuck("valueA", valueDuck)
+
+// src/valueBDuck.js
+import * as valueDuck from "./valueDuck"
+export const duck = scopeDuck("valueB", valueDuck)</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="scopeReducer"><span class="type-signature"></span>scopeReducer<span class="signature">(scope, reducer)</span><span class="type-signature"> &rarr; {function}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Scopes a reducer function.</p>
+<p>Accepts a scope and a reducer function and returns a scoped reducer fucnction. A scoped reducer works and can be used like a regular reducer - the only difference is that the scoped reducer will ignore all actions that aren't scoped the same.
+If not of type &quot;function&quot;, the given reducer is returned as it is.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>reducer</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scopeReducer.js.html">scopeReducer.js</a>, <a href="scopeReducer.js.html#line37">line 37</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">function</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const setValue = payload => ({
+ type: "app/reducerA/SET_VALUE",
+ payload
+})
+
+const scopedSetValue = scopeAction("reducerB", setValue)
+
+const reducer = (state = 0, action) => action.type === "app/reducerA/SET_VALUE" ? action.payload : state
+const scopedReducer = scopeReducer("reducerB", reducer)
+
+// scoped reducer ignores unscoped action
+console.log(scopedReducer(0, setValue(42)))
+// 0
+
+// scoped reducer handles scoped action
+console.log(scopedReducer(0, scopedSetValue(42)))
+// 42</code></pre>
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#createScopedDuckFactory">createScopedDuckFactory</a></li><li><a href="global.html#scopeAction">scopeAction</a></li><li><a href="global.html#scopeActionType">scopeActionType</a></li><li><a href="global.html#scopeDuck">scopeDuck</a></li><li><a href="global.html#scopeReducer">scopeReducer</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sat May 04 2019 18:57:59 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

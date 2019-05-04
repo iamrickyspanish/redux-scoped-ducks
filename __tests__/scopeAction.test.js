@@ -10,13 +10,12 @@ describe("scopeAction", () => {
         }
       });
     });
-    it("noop if action type is not duck complient", () => {
-      expect(scopeAction("reducerB", "affe")).toMatchObject({
+    it("returns action object with unscoped action type if action type is not duck complient", () => {
+      const scopedAction = scopeAction("reducerB", "affe")
+      expect(scopedAction).toMatchObject({
         type: "affe",
-        meta: {
-          unscopedActionType: "affe"
-        }
       });
+      expect(scopedAction.meta).toBeUndefined()
     });
   });
 
@@ -33,11 +32,12 @@ describe("scopeAction", () => {
     });
 
     it("returned action creator does not mutate the original action creator's meta data other than adding the 'unscopedActionType' property", () => {
+      const scopedAction = scopeAction("reducerB", () => ({
+        type: "app/reducerA/action",
+        meta: { foo: "bar" }
+      })) 
       expect(
-        scopeAction("reducerB", () => ({
-          type: "app/reducerA/action",
-          meta: { foo: "bar" }
-        }))()
+        scopedAction()
       ).toMatchObject({
         type: "app/reducerB/action",
         meta: {
@@ -65,20 +65,20 @@ describe("scopeAction", () => {
       });
     });
 
-    it("noop if action type returned by the given action creator is not duck complient", () => {
+    it("returns action creator as it was received if action type of computed action object is not duck complient", () => {
+      const scopedAction = scopeAction("reducerB", payload => ({
+        type: "affe",
+        payload,
+        meta: { foo: "bar" }
+      }))
       expect(
-        scopeAction("reducerB", payload => ({
-          type: "affe",
-          payload,
-          meta: { foo: "bar" }
-        }))(42)
+        scopedAction(42)
       ).toMatchObject({
         type: "affe",
         payload: 42,
-        meta: {
-          foo: "bar"
-        }
+        meta: { foo: "bar" }
       });
+      expect(scopedAction(42).meta.unscopedActionType).toBeUndefined()
     });
   });
 
@@ -111,7 +111,7 @@ describe("scopeAction", () => {
       });
     });
 
-    it("noop if action type of given action object is not duck complient", () => {
+    it("returns action object as it was received if its action type is not duck complient", () => {
       expect(
         scopeAction("reducerB", {
           type: "affe",

@@ -1,0 +1,26 @@
+{
+    "tags": {
+        "allowUnknownTags": true
+    },
+    "source": {
+        "include": [
+            "src"
+        ],
+        "exclude": [
+            ".git",
+            "__tests__",
+            "node_modules"
+        ],
+        "includePattern": ".+\\.js(x|doc)?$"
+    },
+    "plugins": [
+        "plugins/markdown"
+    ],
+    "opts": {
+        "encoding": "utf8",
+        "template": "templates/default",
+        "destination": "docs/",
+        "recurse": true,
+        "verbose": true
+    }
+}
