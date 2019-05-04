@@ -17,7 +17,7 @@ export const INCREMENT = "app/counter/INCREMENT"
 export const DECREMENT = "app/counter/DECREMENT"
 
 export const increment = () => ({ type: INCREMENT })
-export const increment = () => ({ type: INCREMENT })
+export const decrement = () => ({ type: DECREMENT })
 
 export default (state = 0, action) => {
   switch(action.type) {
