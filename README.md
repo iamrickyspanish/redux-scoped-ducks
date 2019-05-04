@@ -93,6 +93,15 @@ store.dispatch(incrementScorePlayerB())
 
 ## API Documentation
 
+`redux-scoped-ducks` exposes the following self-explanatory functions:
+
++ createScopedDuckFactory(duck) → {function}
++ scopeAction(scope, action) → {object|function}
++ scopeActionType(scope, actionType) → {string}
++ scopeDuck(scope, duck) → {object}
++ scopeReducer(scope, reducer) → {function}
+
+See the full API documentation here: 
 https://iamrickyspanish.github.io/redux-scoped-ducks
 
 ## What does "scoping a duck" mean?
