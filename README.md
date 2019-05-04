@@ -78,7 +78,7 @@ export default store
 
 Thats it! Now you can use the action creators of your ducks.
 
-```javascripts
+```javascript
 import scorePlayerADuck from "scorePlayerA/duck";
 import scorePlayerBDuck from "scorePlayerB/duck";
 import store from "src/store"
@@ -95,7 +95,7 @@ store.dispatch(incrementScorePlayerB())
 
 https://iamrickyspanish.github.io/redux-scoped-ducks
 
-## What does scoping a duck mean?
+## What does "scoping a duck" mean?
 
 Scoping means to manipulate the action types used in a duck by replacing the reducer info. So `app/reducerA/ACTION` becomes `app/reducerB/ACTION`. This affects action types, the actions returned by creatorsAdditionaly and the reducer.
 Additionaly a meta attribute `unscopedActionType` is added to all actions returned by the ducks action creators.
