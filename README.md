@@ -30,7 +30,7 @@ export default (state = 0, action) => {
   }
 }
 ```
-Let's say you need to implement two new features, `scorePlayerA` and `scorePlayerB`, that need some state to keep track of their score values. Reusing our counter duck would be perfect for this purpose. To be able to reuse a duck we must scope it.
+Let's say you need to implement two new features, `scorePlayerA` and `scorePlayerB`, that need some state to keep track of their score values. Reusing our counter duck would be perfect for this purpose. To be able to reuse a duck we must [scope](#what-does-scoping-a-duck-mean) it.
 
 For this purpose we create a duck factory that will allow us to create scoped versions of our counter duck. 
 
@@ -86,8 +86,8 @@ import store from "src/store"
 const { increment: incrementScorePlayerA } = scorePlayerADuck;
 const { increment: incrementScorePlayerB } = scorePlayerBDuck;
 
-store.dispatch(incrementScorePlayerA())
-store.dispatch(incrementScorePlayerB())
+store.dispatch(incrementScorePlayerA()) //dispatches action "app/scorePlayerA/INCREMENT", changes only value of reducer "scorePlayerA"
+store.dispatch(incrementScorePlayerB()) //dispatches action "app/scorePlayerB/INCREMENT", changes only value of reducer "scorePlayerB"
 
 ```
 
