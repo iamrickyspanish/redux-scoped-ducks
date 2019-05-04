@@ -1,0 +1,40 @@
+{
+  "name": "redux-scoped-ducks",
+  "version": "0.5.0",
+  "description": "scope redux logic organized in ducks",
+  "source": "src/index.js",
+  "main": "dist/redux-scoped-ducks.js",
+  "module": "dist/redux-scoped-ducks.mjs",
+  "unpkg": "dist/redux-scoped-ducks.umd.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "babel-jest": "^24.7.1",
+    "coveralls": "^3.0.3",
+    "jest": "^24.7.1",
+    "microbundle": "^0.11.0"
+  },
+  "scripts": {
+    "start": "microbundle --watch --no-sourcemap --compress false",
+    "build": "microbundle --no-sourcemap --compress false",
+    "test": "NODE_PATH=./src jest --config=jest.config.js --coverage --coverageReporters=text-lcov | coveralls",
+    "report-coverage": "cat ./coverage/lcov.info | coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamrickyspanish/redux-scoped-ducks.git"
+  },
+  "keywords": [
+    "redux",
+    "ducks",
+    "duck",
+    "scope"
+  ],
+  "author": "Enrico Lopez Gutierrez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iamrickyspanish/redux-scoped-ducks/issues"
+  },
+  "homepage": "https://github.com/iamrickyspanish/redux-scoped-ducks#readme"
+}

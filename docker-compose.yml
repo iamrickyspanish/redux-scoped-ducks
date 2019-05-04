@@ -1,0 +1,13 @@
+version: "2"
+services:
+  app:
+    build: .
+    restart: always
+    container_name: app
+    volumes:
+      - ".:/app"
+      - "./node_modules:/app/node_modules"
+    command: /bin/bash -c -l "npm install && npm start"
+    ports:
+      - "3000:3000"
+      - "9009:9009"
