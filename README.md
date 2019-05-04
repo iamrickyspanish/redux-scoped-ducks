@@ -36,7 +36,7 @@ For this purpose we create a duck factory that will allow us to create scoped ve
 
 ```javascript
 // src/counter/duckFactory.js
-import { createScopedDuckFactory } from "redux-duck-scope";
+import { createScopedDuckFactory } from "redux-scoped-ducks";
 import * as counterDuck from "./duck"
 
 export default createScopedDuckFactory(counterDuck);
