@@ -7,6 +7,10 @@ A handfull of functions to make redux [ducks](https://github.com/erikras/ducks-m
 
 For this library to work poperly, your redux logic should be organized in ducks. Please read this first: https://github.com/erikras/ducks-modular-redux
 
+## installation
+
+`npm i --save redux-scoped-ducks`
+
 ## usage - a simple example
 
 Assume you have a simple duck that contains all the redux stuff to handle a counter logic:
@@ -91,7 +95,7 @@ store.dispatch(incrementScorePlayerB()) //dispatches action "app/scorePlayerB/IN
 
 ```
 
-## API Documentation
+## API documentation
 
 `redux-scoped-ducks` exposes the following self-explanatory functions:
 
