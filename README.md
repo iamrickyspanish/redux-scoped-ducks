@@ -2,6 +2,9 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/iamrickyspanish/redux-scoped-ducks/badge.svg?branch=master)](https://coveralls.io/github/iamrickyspanish/redux-scoped-ducks?branch=master)
 [![CircleCI](https://circleci.com/gh/iamrickyspanish/redux-scoped-ducks.svg?style=svg)](https://circleci.com/gh/iamrickyspanish/redux-scoped-ducks)
+![dependencies](https://img.shields.io/david/iamrickyspanish/redux-scoped-ducks.svg)
+![dev-dependencies](https://img.shields.io/david/dev/iamrickyspanish/redux-scoped-ducks.svg)
+![peer-dependencies](https://img.shields.io/david/peer/iamrickyspanish/redux-scoped-ducks.svg)
 
 A handfull of functions to make redux [ducks](https://github.com/erikras/ducks-modular-redux) reusable.
 
